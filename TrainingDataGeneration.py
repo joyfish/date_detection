@@ -623,14 +623,3 @@ if __name__ == "__main__":
     #mask_np = basic.make_mask(img_pil_size=mains['img'].size, bounding_box=mains['bounding_box'])
     #mask_pil = basic.np2pil(mask_np)
     #display(mask_pil)
-
-# %%
-mains, font_dict, noise_dict, misc_dict = gen.sample_detection()
-mains['img']
-
-
-# %%
-mains, misc_dict
-
-# %%
-
