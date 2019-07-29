@@ -1,3 +1,17 @@
+# ---
+# jupyter:
+#   jupytext:
+#     text_representation:
+#       extension: .py
+#       format_name: light
+#       format_version: '1.3'
+#       jupytext_version: 0.8.6
+#   kernelspec:
+#     display_name: Python 3
+#     language: python
+#     name: python3
+# ---
+
 import os
 from PIL import Image
 import cv2
@@ -39,7 +53,7 @@ def cp(src_path, dest_path):
 
 #
 # Get data
-# 
+#
 
 def get_coco_dataset():
     """Downloads COCO-dataset and unpacks it to val2017 folder"""
@@ -54,8 +68,6 @@ def get_coco_dataset():
             print("Done. The images are in folder val2017.")
         else:
             print("Something went wrong. The zip-file was not downloaded.")
-
-
 
 def get_blackwhite_images(folder_name = 'blackwhiteimages'): 
     """Download same black-white image in a seperate folder."""
@@ -74,6 +86,22 @@ def get_blackwhite_images(folder_name = 'blackwhiteimages'):
         print('Create folder <{}>.'.format(folder_name))
         os.makedirs(folder_name)  
         for i, url in enumerate(black_white_images_url):
+            name = os.path.join(folder_name, "bw_{:02}.jpg".format(i))
+            urllib.request.urlretrieve(url, name)
+        n_jpgs = len(gglob(os.path.join(folder_name, '*')))
+        print("Done! Downloaded {} jpg images.".format(n_jpgs))
+    else:
+        n_jpgs = len(gglob(os.path.join(folder_name, '*')))
+        print("Folder '{}' already exists and has {} jpg images stored.".format(folder_name, n_jpgs))
+
+def get_black_images(folder_name = 'blackimages'): 
+    """Download same black-white image in a seperate folder."""
+    black_images_url = ['http://image.fg-a.com/backgrounds/black-planet-surface-1920.jpg']
+    
+    if not os.path.exists(folder_name):
+        print('Create folder <{}>.'.format(folder_name))
+        os.makedirs(folder_name)  
+        for i, url in enumerate(black_images_url):
             name = os.path.join(folder_name, "bw_{:02}.jpg".format(i))
             urllib.request.urlretrieve(url, name)
         n_jpgs = len(gglob(os.path.join(folder_name, '*')))
@@ -164,9 +192,15 @@ def plot_cv_img(img_cv, figsize=None):
     plt.imshow(img_cv)
 
 
+def plt_img_pil(img_pil):
+    im_array = np.asarray(img_pil)
+    plt.imshow(im_array)
+    plt.show()
+
 # Read images
 
 def read_cv_image(image_path):
+    #TODO read as RGB image
     return cv2.imread(image_path)
 
 
