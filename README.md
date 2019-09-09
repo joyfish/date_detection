@@ -1,14 +1,23 @@
 # date_detection
 
-Read date stamps on images (ongoing project)
+*Read date stamps on noisy images.*
+
+This is a ongoing project with a colleague and is developed on Gitlab. 
+Sometimes I publish some models here. 
 
 
 # TrainingDataGeneration
 
  
-Typical example image
+Typical example image:
+
+* large image,
+* small date stamp somewhere in the image (in reality this is always in corner),
+* noisy data (blur, vintage filter, random gaussian noise)
 
 ![Example](assets/example_image.png)
+
+Many parts are already working, nevertheless I split the problem in smaller parts:
 
 ### 1 Single digit 
 
